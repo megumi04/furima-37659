@@ -42,7 +42,6 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - belongs_to :destination
-- belongs_to :card
 
 
 
@@ -72,20 +71,6 @@ Things you may want to cover:
 
 
 
-## card
-
-| Column       | Type       | Options                        |
-|--------------|------------|--------------------------------|
-| user_id      | integer    | null: false, foreign_key: true |
-| customer_id  | string     | null: false                    |
-| card_id      | string     | null: false                    |
-
-### Association
-
-- belongs_to :users
-
-
-
 
 ##  destination table（購入者）
 
@@ -101,7 +86,7 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :user
+- has_many :user
 
 
 
@@ -114,7 +99,7 @@ Things you may want to cover:
 | item_id      | integer   | null: false, foreign_key: true  |
 
 ### Association
-- has_many :item
+- belongs_to :item
 
 
 

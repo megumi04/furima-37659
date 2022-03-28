@@ -22,3 +22,118 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+
+# テーブル設計
+
+
+## users table
+| Column             | Type    | Options                        |
+|--------------------|---------|--------------------------------|
+| nickname           | string  | null: false                    |
+| email              | string  | null: false                    |
+| encrypted_password | string  | null: false                    |
+| first_name         | string  | null: false                    |
+| last_name          | string  | null: false                    |
+| birth_day            | text    | null: false                  |
+
+### Association
+- has_many :items
+- belongs_to :destination
+- belongs_to :card
+
+
+
+
+
+## items table（商品情報）
+
+| Column             | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| user_id            | integer    | null: false, foreign_key: true |
+| image_id           | string     | null: false                    |
+| brand_id           | string     | null: false                    |
+| category_id        | string     | null: false                    |
+| price              | string     | null: false                    |
+| name               | string     | null: false                    |
+| product_status     | string     | null: false                    |
+| shipping_cost      | string     | null: false                    |
+| shipping_area      | string     | null: false                    |
+| shipping_days      | string     | null: false                    |
+
+### Association
+
+- belongs_to :user 
+- belongs_to :category 
+- belongs_to :brand
+- has_many :images
+
+
+
+## card
+
+| Column       | Type       | Options                        |
+|--------------|------------|--------------------------------|
+| user_id      | integer    | null: false, foreign_key: true |
+| customer_id  | string     | null: false                    |
+| card_id      | string     | null: false                    |
+
+### Association
+
+- belongs_to :users
+
+
+
+
+##  destination table（購入者）
+
+| Column       | Type       | Options                        |
+|--------------|------------|--------------------------------|
+| user_id      | integer    | null: false, foreign_key: true |
+| zip_code     | string     | null: false                    |
+| city         | string     | null: false                    |
+| street       | string     | null: false                    |
+| street_number| string     | null: false                    |
+| apartment    | string     | null: false                    |
+| phone        | integer     | null: false                   |
+
+### Association
+
+- belongs_to :user
+
+
+
+
+## images
+
+| Column       | Type       | Options                        |
+|--------------|------------|--------------------------------|
+| image        | string     | null: false                    |
+| item_id      | integer   | null: false, foreign_key: true  |
+
+### Association
+- has_many :item
+
+
+
+## brand
+
+| Column       | Type       | Options                        |
+|--------------|------------|--------------------------------|
+| name         | string     | null: false                    |
+
+### Association
+- has_many :item
+
+
+
+## category
+
+| Column       | Type       | Options                        |
+|--------------|------------|--------------------------------|
+|name          | string     | null: false                    |
+
+### Association
+- has_many :item

@@ -1,24 +1,86 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## users table
+| Column             | Type    | Options                        |
+|--------------------|---------|--------------------------------|
+| nickname           | string  | null: false                    |
+| email              | string  | null: false, unique: true      |
+| encrypted_password | string  | null: false                    |
+| first_name         | string  | null: false                    |
+| last_name          | string  | null: false                    |
+| first_name_kana    | string  | null: false                    |
+| last_name_kana     | string  | null: false                    |
+| birth_day          | date    | null: false                    |
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :orders
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## items table（商品情報）
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column             | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| user               | references | null: false, foreign_key: true |
+| name               | string     | null: false                    |
+| price              | integer    | null: false                    
+| item_text          | text       | null: false                    |
+| brand_id           | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| shipping_cost_id   | integer    | null: false                    |
+| state_id           | integer    | null: false                    |
+| shipping_day_id    | integer    | null: false                    |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :user
+- has_one :order
+
+- belongs_to_active_hash :brand
+- belongs_to_active_hash :category
+- belongs_to_active_hash :shipping_cost
+- belongs_to_active_hash :state
+- belongs_to_active_hash :shipping_day
+
+
+
+
+
+
+##  addresses table（配送先）
+
+| Column          | Type       | Options                        |
+|-----------------|------------|--------------------------------|
+| zip_code        | string     | null: false                    |
+| state_id        | integer    | null: false                    |
+| city            | string     | null: false                    |
+| street_number   | string     | null: false                    |
+| apartment       | string     |                                |
+| phone           | string     | null: false                    |
+| order           | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :order
+
+- belongs_to_active_hash :state
+
+
+
+
+## orders テーブル(注文)
+
+| Column       | Type       | Options                        |
+|--------------|------------|--------------------------------|
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :address

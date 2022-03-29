@@ -41,7 +41,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- belongs_to :destination
+- has_one :destination
 
 
 
@@ -52,8 +52,8 @@ Things you may want to cover:
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
 | user_id            | integer    | null: false, foreign_key: true |
-| brand_id           | string     | null: false                    |
-| category_id        | string     | null: false                    |
+| brand_id           | string     | null: false  foreign_key: true |
+| category_id        | string     | null: false  foreign_key: true |
 | price              | string     | null: false                    |
 | name               | string     | null: false                    |
 | product_status     | string     | null: false                    |
@@ -81,11 +81,11 @@ Things you may want to cover:
 | street       | string     | null: false                    |
 | street_number| string     | null: false                    |
 | apartment    | string     | null: false                    |
-| phone        | integer     | null: false                   |
+| phone        | integer    | null: false                   |
 
 ### Association
 
-- has_many :user
+- belongs_to :user
 
 
 

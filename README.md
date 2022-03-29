@@ -37,7 +37,7 @@ Things you may want to cover:
 | encrypted_password | string  | null: false                    |
 | first_name         | string  | null: false                    |
 | last_name          | string  | null: false                    |
-| birth_day            | text    | null: false                  |
+| birth_day          | text    | null: false                    |
 
 ### Association
 - has_many :items
@@ -52,7 +52,6 @@ Things you may want to cover:
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
 | user_id            | integer    | null: false, foreign_key: true |
-| image_id           | string     | null: false                    |
 | brand_id           | string     | null: false                    |
 | category_id        | string     | null: false                    |
 | price              | string     | null: false                    |

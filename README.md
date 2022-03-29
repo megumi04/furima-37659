@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :items
-- has_many :order
+- has_many :orders
 
 
 
@@ -32,7 +32,7 @@
 | brand_id           | integer    | null: false                    |
 | category_id        | integer    | null: false                    |
 | shipping_cost_id   | integer    | null: false                    |
-| shipping_area_id   | integer    | null: false                    |
+| state_id           | integer    | null: false                    |
 | shipping_day_id    | integer    | null: false                    |
 
 ### Association
@@ -40,32 +40,35 @@
 - belongs_to :user
 - has_one :order
 
-- belongs_to_active_hash :shipping_cost_id
-- belongs_to_active_hash :shipping_area_id
-- belongs_to_active_hash :shipping_day_id
 - belongs_to_active_hash :brand_id
 - belongs_to_active_hash :category_id
+- belongs_to_active_hash :shipping_cost_id
+- belongs_to_active_hash :state_id 
+- belongs_to_active_hash :shipping_day_id
 
 
 
 
 
 
-##  address table（配送先）
+##  addresses table（配送先）
 
-| Column       | Type       | Options                        |
-|--------------|------------|--------------------------------|
-| user         | references | null: false, foreign_key: true |
-| zip_code     | string     | null: false                    |
-| city         | string     | null: false                    |
-| street       | string     | null: false                    |
-| street_number| string     | null: false                    |
-| apartment    | string     |                                |
-| phone        | string     | null: false                    |
+| Column          | Type       | Options                        |
+|-----------------|------------|--------------------------------|
+| zip_code        | string     | null: false                    |
+| state_id        | integer    | null: false                    |
+| city            | string     | null: false                    |
+| street_number   | string     | null: false                    |
+| apartment       | string     |                                |
+| phone           | string     | null: false                    |
+| order           | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :order
+- belongs_to :order
+
+- belongs_to_active_hash :state_id 
+
 
 
 
@@ -80,4 +83,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address

@@ -1,31 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-
-
 # テーブル設計
 
 
@@ -37,11 +9,13 @@ Things you may want to cover:
 | encrypted_password | string  | null: false                    |
 | first_name         | string  | null: false                    |
 | last_name          | string  | null: false                    |
-| birth_day          | text    | null: false                    |
+| first_name_kana    | string  | null: false                    |
+| last_name_kana     | string  | null: false                    |
+| birth_day          | date    | null: false                    |
 
 ### Association
 - has_many :items
-- has_one :destination
+- has_one :address
 
 
 
@@ -51,37 +25,35 @@ Things you may want to cover:
 
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
-| user_id            | integer    | null: false, foreign_key: true |
-| brand_id           | string     | null: false  foreign_key: true |
-| category_id        | string     | null: false  foreign_key: true |
-| price              | string     | null: false                    |
+| user               | references | null: false, foreign_key: true |
+| brand              | references | null: false  foreign_key: true |
+| category           | references | null: false  foreign_key: true |
+| price              | integer    | null: false                    |
 | name               | string     | null: false                    |
-| product_status     | string     | null: false                    |
+| item_text          | text       | null: false                    |
 | shipping_cost      | string     | null: false                    |
 | shipping_area      | string     | null: false                    |
 | shipping_days      | string     | null: false                    |
 
 ### Association
 
-- belongs_to :user 
-- belongs_to :category 
-- belongs_to :brand
-- has_many :images
+- belongs_to :user
+- has_one :orders
 
 
 
 
-##  destination table（購入者）
+##  address table（配送先）
 
 | Column       | Type       | Options                        |
 |--------------|------------|--------------------------------|
-| user_id      | integer    | null: false, foreign_key: true |
+| user         | references | null: false, foreign_key: true |
 | zip_code     | string     | null: false                    |
 | city         | string     | null: false                    |
 | street       | string     | null: false                    |
 | street_number| string     | null: false                    |
-| apartment    | string     | null: false                    |
-| phone        | integer    | null: false                   |
+| apartment    | string     |                                |
+| phone        | string     | null: false                    |
 
 ### Association
 
@@ -89,35 +61,14 @@ Things you may want to cover:
 
 
 
-
-## images
+## orders テーブル
 
 | Column       | Type       | Options                        |
 |--------------|------------|--------------------------------|
-| image        | string     | null: false                    |
-| item_id      | integer   | null: false, foreign_key: true  |
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
 
 ### Association
+
 - belongs_to :item
-
-
-
-## brand
-
-| Column       | Type       | Options                        |
-|--------------|------------|--------------------------------|
-| name         | string     | null: false                    |
-
-### Association
-- has_many :item
-
-
-
-## category
-
-| Column       | Type       | Options                        |
-|--------------|------------|--------------------------------|
-|name          | string     | null: false                    |
-
-### Association
-- has_many :item
+- has_one :address

@@ -5,7 +5,7 @@
 | Column             | Type    | Options                        |
 |--------------------|---------|--------------------------------|
 | nickname           | string  | null: false                    |
-| email              | string  | null: false, foreign_key:true  |
+| email              | string  | null: false, unique: true      |
 | encrypted_password | string  | null: false                    |
 | first_name         | string  | null: false                    |
 | last_name          | string  | null: false                    |
@@ -26,11 +26,11 @@
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
 | user               | references | null: false, foreign_key: true |
-| brand              | references | null: false  foreign_key: true |
-| category           | references | null: false  foreign_key: true |
-| price              | integer    | null: false                    |
-| item_text          | text       | null: false                    |
 | name               | string     | null: false                    |
+| price              | integer    | null: false                    
+| item_text          | text       | null: false                    |
+| brand_id           | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
 | shipping_cost_id   | integer    | null: false                    |
 | shipping_area_id   | integer    | null: false                    |
 | shipping_day_id    | integer    | null: false                    |
@@ -43,6 +43,9 @@
 - belongs_to_active_hash :shipping_cost_id
 - belongs_to_active_hash :shipping_area_id
 - belongs_to_active_hash :shipping_day_id
+- belongs_to_active_hash :brand_id
+- belongs_to_active_hash :category_id
+
 
 
 
@@ -66,7 +69,7 @@
 
 
 
-## orders テーブル
+## orders テーブル(注文)
 
 | Column       | Type       | Options                        |
 |--------------|------------|--------------------------------|

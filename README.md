@@ -40,11 +40,11 @@
 - belongs_to :user
 - has_one :order
 
-- belongs_to_active_hash :brand_id
-- belongs_to_active_hash :category_id
-- belongs_to_active_hash :shipping_cost_id
-- belongs_to_active_hash :state_id 
-- belongs_to_active_hash :shipping_day_id
+- belongs_to_active_hash :brand
+- belongs_to_active_hash :category
+- belongs_to_active_hash :shipping_cost
+- belongs_to_active_hash :state
+- belongs_to_active_hash :shipping_day
 
 
 
@@ -67,7 +67,7 @@
 
 - belongs_to :order
 
-- belongs_to_active_hash :state_id 
+- belongs_to_active_hash :state
 
 
 

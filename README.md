@@ -5,7 +5,7 @@
 | Column             | Type    | Options                        |
 |--------------------|---------|--------------------------------|
 | nickname           | string  | null: false                    |
-| email              | string  | null: false                    |
+| email              | string  | null: false, foreign_key:true  |
 | encrypted_password | string  | null: false                    |
 | first_name         | string  | null: false                    |
 | last_name          | string  | null: false                    |
@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :items
-- has_one :address
+- has_one :order
 
 
 
@@ -29,16 +29,21 @@
 | brand              | references | null: false  foreign_key: true |
 | category           | references | null: false  foreign_key: true |
 | price              | integer    | null: false                    |
-| name               | string     | null: false                    |
 | item_text          | text       | null: false                    |
-| shipping_cost      | string     | null: false                    |
-| shipping_area      | string     | null: false                    |
-| shipping_days      | string     | null: false                    |
+| name               | string     | null: false                    |
+| shipping_cost_id   | integer    | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
+| shipping_day_id    | integer    | null: false                    |
 
 ### Association
 
 - belongs_to :user
-- has_one :orders
+- has_one :order
+
+- belongs_to_active_hash :shipping_cost_id
+- belongs_to_active_hash :shipping_area_id
+- belongs_to_active_hash :shipping_day_id
+
 
 
 
@@ -57,7 +62,7 @@
 
 ### Association
 
-- belongs_to :user
+- has_one :order
 
 
 
@@ -70,5 +75,6 @@
 
 ### Association
 
+- belongs_to :user
 - belongs_to :item
-- has_one :address
+- belongs_to :address

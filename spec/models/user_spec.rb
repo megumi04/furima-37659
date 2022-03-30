@@ -38,7 +38,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'メールアドレスは@を含む必要があること' do
-        @user.email = '@'
+        @user.email = 'test.com'
         @user.valid?
         expect(@user.errors.full_messages).to include('Email is invalid')
       end
@@ -72,9 +72,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+
+      it 'passwordは全角文字を含むものは登録できない' do
+        @user.password = 'testtest１'
+        @user.password_confirmation = 'testtest１'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is invalid')
+      end
     end
   end
-
   describe '新規登録/本人情報確認' do
     context '本人情報確認ができる場合' do
       it 'last_nameとfirst_nameが全角（漢字・ひらがな・カタカナ）ならば登録できる' do

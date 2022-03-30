@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードは6文字以上であること' do
-        @user.password = '00000'
+        @user.password = '1234567'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end

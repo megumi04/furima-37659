@@ -50,19 +50,13 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードは6文字以上であること' do
-        @user.password = '1234567'
+        @user.password = '12345'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
-      it 'パスワードは半角英数字混合であること（数字）' do
+      it 'パスワードは半角英数字混合であること' do
         @user.password = '222222'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", 'Password is invalid')
-      end
-
-      it 'パスワードは半角英数字混合であること（英字のみ）' do
-        @user.password = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", 'Password is invalid')
       end

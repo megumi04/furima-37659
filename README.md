@@ -26,13 +26,13 @@
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
 | user               | references | null: false, foreign_key: true |
-| name               | string     | null: false                    |
+| item_name          | string     | null: false                    |
 | price              | integer    | null: false                    
 | item_text          | text       | null: false                    |
 | brand_id           | integer    | null: false                    |
 | category_id        | integer    | null: false                    |
 | shipping_cost_id   | integer    | null: false                    |
-| state_id           | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
 | shipping_day_id    | integer    | null: false                    |
 
 ### Association

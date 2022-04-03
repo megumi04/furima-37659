@@ -26,25 +26,23 @@
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
 | user               | references | null: false, foreign_key: true |
-| name               | string     | null: false                    |
+| item_name          | string     | null: false                    |
 | price              | integer    | null: false                    
 | item_text          | text       | null: false                    |
-| brand_id           | integer    | null: false                    |
 | category_id        | integer    | null: false                    |
-| shipping_cost_id   | integer    | null: false                    |
-| state_id           | integer    | null: false                    |
-| shipping_day_id    | integer    | null: false                    |
+| shopping_cost_id   | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| shopping_day_id    | integer    | null: false                    |
 
 ### Association
 
 - belongs_to :user
 - has_one :order
 
-- belongs_to_active_hash :brand
 - belongs_to_active_hash :category
-- belongs_to_active_hash :shipping_cost
+- belongs_to_active_hash :shopping_cost
 - belongs_to_active_hash :state
-- belongs_to_active_hash :shipping_day
+- belongs_to_active_hash :sopping_day
 
 
 

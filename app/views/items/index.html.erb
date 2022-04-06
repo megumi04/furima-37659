@@ -1,6 +1,5 @@
 <%= render "shared/header" %>
 <div class='main'>
-
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
   <div class='title-contents'>
     <h2 class='service-title'>
@@ -127,23 +126,22 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-      <% if @item.exists? %>
         <% @item.each do |item| %>
           <li class='list'>
             <%= link_to item_path(item.id) do %>
             <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
+        <% if item.order.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
+        <% end %>
 
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-             <p><%= item.name %></p>
+             <%= item.name %>
           </h3>
           <div class='item-price'>
            <span><%= item.price %>円<br><%= item.shopping_cost.name %></span>
@@ -156,8 +154,7 @@
         <% end %>
       </li>
       <% end %>
-
-      <% else %>
+      <% if @item.length == 0 %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>

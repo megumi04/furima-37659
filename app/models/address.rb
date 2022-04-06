@@ -1,6 +1,4 @@
 class Address < ApplicationRecord
-  belongs_to :orders
-
+  belongs_to :order
 end
 
-#belongs_to_active_hash :state

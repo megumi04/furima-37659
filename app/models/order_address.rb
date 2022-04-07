@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-
+  attr_accessor :token
   attr_accessor :post_code, :state_id, :city, :house_number, :apartment, :phone, :user_id, :item_id, :token
 
   with_options presence: true do
@@ -12,6 +12,7 @@ class OrderAddress
     validates :post_code, format: { with: /\A\d{3}-\d{4}\z/ }
     validates :phone, format: { with: /\A\d{10,11}\z/ }
     validates :state_id, numericality: { other_than: 0 }
+
   end
 
   def save
@@ -20,3 +21,4 @@ class OrderAddress
                    order_id: order.id)
   end
 end
+

@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    @orders_address = OrderAddress.new(order_params)
+    @orders_address = OrderAddress.new(orders_params)
     if @orders_address.valid?
       pay_item
       return @orders_address.save
@@ -23,19 +23,17 @@ class OrdersController < ApplicationController
     end
   end
   
-
-
-
   private
 
-  def order_params
+  def orders_params
     params.require(:order_address).permit(:post_code, :state_id, :city, :address, :house_number, :phone).merge(
       user_id: current_user.id, item_id: @item.id, token: params[:token]
     )
   end
 
+
   def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price, # 商品の値段
       card: orders_params[:token], # カードトークン

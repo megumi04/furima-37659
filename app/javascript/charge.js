@@ -10,4 +10,4 @@ function charge (){
   });
 };
 
-window.addEventListener('load', charge); 
+window.addEventListener('load', charge);

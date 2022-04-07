@@ -53,10 +53,10 @@
 
 | Column          | Type       | Options                        |
 |-----------------|------------|--------------------------------|
-| zip_code        | string     | null: false                    |
+| post_code     | string     | null: false                    |
 | state_id        | integer    | null: false                    |
 | city            | string     | null: false                    |
-| street_number   | string     | null: false                    |
+| house_number    | string     | null: false                    |
 | apartment       | string     |                                |
 | phone           | string     | null: false                    |
 | order           | references | null: false, foreign_key: true |

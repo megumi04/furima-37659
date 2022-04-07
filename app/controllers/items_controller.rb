@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy ]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :move_to_index, only: [:edit, :destroy]
 
@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path if @item.order.present?
   end
 
   def update
@@ -35,21 +36,18 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if  @item.user.id == current_user.id
+    if @item.user.id == current_user.id
       @item.destroy
       redirect_to root_path
     end
   end
 
-
-
   private
 
-   #共通処理
+  # 共通処理
   def set_item
     @item = Item.find(params[:id])
   end
-
 
   def item_params
     params.require(:item).permit(:image, :name, :price, :item_text, :category_id, :shopping_cost_id, :status_id, :state_id,
@@ -57,8 +55,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if @item.user_id != current_user.id
-      redirect_to action: :index
-    end
+    redirect_to action: :index if @item.user_id != current_user.id
   end
 end

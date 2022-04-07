@@ -31,9 +31,9 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Post code is invalid')
       end
       it 'state_idが空では保存できない' do
-        @order_address.state_id = ''
+        @order_address.state_id = 0
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("State can't be blank")
+        expect(@order_address.errors.full_messages).to include("State must be other than 0")
       end
 
       it 'cityが空では保存ができない' do

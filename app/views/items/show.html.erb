@@ -18,14 +18,14 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-         <%= @item.price.to_s(:delimited) %>
+         ¥ <%= @item.price.to_s(:delimited) %>
       </span>
       <span class="item-postage">
         <%= @item.shopping_cost.name %>
       </span>
     </div>
     <% unless @item.order.present?%>
-     <% if user_signed_in? #&& @item.order.blank?%>
+     <% if user_signed_in? %>
         <% if current_user.id == @item.user_id %>
           <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
           <p class="or-text">or</p>

@@ -70,3 +70,4 @@ gem 'image_processing', '~> 1.2'
 gem 'active_hash'
 gem 'factory_bot_rails'
 gem 'payjp'
+gem "aws-sdk-s3", require: false
